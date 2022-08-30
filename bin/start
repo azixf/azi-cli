@@ -1,0 +1,14 @@
+#! /usr/bin/env node
+const figlet = require("figlet");
+
+if (process.argv.length <= 2) {
+  console.log('\r\n' + figlet.textSync("azi-cli", {
+    font: "3D-ASCII",
+    horizontalLayout: "default",
+    verticalLayout: "default",
+    width: 80,
+    whitespaceBreak: true,
+  }));
+} else {
+  require('../src/core/index')
+}
