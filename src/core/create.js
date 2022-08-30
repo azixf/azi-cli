@@ -2,12 +2,8 @@ const path = require("path");
 const fs = require("fs-extra");
 const Inquirer = require("inquirer");
 const Creator = require("../utils/creator");
-const { getRepoInfo, getRepoTagsInfo } = require("./repo");
 
 module.exports = async function (projectName, options) {
-  const repo = await getRepoInfo();
-  const tag = await getRepoTagsInfo(repo);
-  console.log(tag);
   const cwd = process.cwd();
   const targetDirectory = path.join(cwd, projectName);
   const creator = new Creator(projectName, targetDirectory);

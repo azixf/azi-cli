@@ -4,7 +4,6 @@ const loading = require('../utils/loading')
 
 async function getRepoInfo() {
   const repoList = await loading('waitting for fetching template...', getRepo);
-  console.log(repoList);
   const repos = repoList.map((item) => item.name);
   const { repo } = await new Inquirer.prompt([
     {

@@ -1,4 +1,5 @@
 const ora = require("ora");
+const chalk = require("chalk");
 
 let retry_time = 3;
 let current_time = 0;
@@ -21,16 +22,17 @@ module.exports = async function loading(message, fn, ...args) {
   try {
     const result = await fn(...args);
     spinner.succeed();
-    current_time = 0
+    current_time = 0;
     return result;
-  } catch {
-    if(current_time < retry_time) {
-      current_time++
+  } catch (err) {
+    if (current_time < retry_time) {
+      current_time++;
+      console.log(`\r\n${chalk.red(err.message)}`);
       spinner.fail("request failed, retrying...");
-      await sleep(1000)
-      return loading(message, fn, ...args)
+      await sleep(1000);
+      return loading(message, fn, ...args);
     }
-    spinner.fail("request failed")
-    process.exit()
+    spinner.fail("request failed");
+    process.exit();
   }
 };
