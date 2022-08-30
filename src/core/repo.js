@@ -1,8 +1,9 @@
 const Inquirer = require("inquirer");
 const { getRepo, getTagsByRepo } = require("../utils/api");
+const loading = require('../utils/loading')
 
 async function getRepoInfo() {
-  const repoList = await getRepo();
+  const repoList = await loading('waitting for fetching template...', getRepo);
   console.log(repoList);
   const repos = repoList.map((item) => item.name);
   const { repo } = await new Inquirer.prompt([
@@ -17,7 +18,7 @@ async function getRepoInfo() {
 }
 
 async function getRepoTagsInfo(repo) {
-  const tagList = await getTagsByRepo(repo)
+  const tagList = await loading('waitting for checking wheather exists tags..', getTagsByRepo, repo)
   if(tagList.length) {
     const tags = tagList.map(tag => tag.name)
     const { tag } = await new Inquirer.prompt([
