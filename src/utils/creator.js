@@ -13,7 +13,6 @@ class Creator {
   }
 
   async create() {
-    console.log(this.name, this.target);
     const repo = await getRepoInfo();
     const tag = await getRepoTagsInfo(repo);
     await this.download(repo, tag);
@@ -25,7 +24,6 @@ class Creator {
 
   async download(repo, tag) {
     const templateUrl = `azi-org/${repo}${tag ? "#" + tag : ""}`;
-    console.log(templateUrl);
     await loading(
       "pulling template...",
       this.downloadGitRepo,
