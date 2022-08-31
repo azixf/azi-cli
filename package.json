@@ -1,5 +1,5 @@
 {
-  "name": "@azi/cli",
+  "name": "azi-cli",
   "version": "0.0.1",
   "description": "an ordinary frontend cli tool",
   "main": "bin/start",
